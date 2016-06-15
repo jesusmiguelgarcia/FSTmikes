@@ -616,6 +616,7 @@ class Util(object):
 
 #from pynlpl.clients.freeling import FreeLingClient
 
+
     @staticmethod
     def calc_POS_FREELING(string, pos, regexp):
         
@@ -629,7 +630,7 @@ class Util(object):
         
         #print tuplas
         
-        if(pos == 0):
+        if(pos == "lemas"):
             final_tokens = lemmas
             #print "mode 0"
             
@@ -638,7 +639,7 @@ class Util(object):
             #print lemmas
             
             
-        if(pos == 1):
+        if(pos == "tags"):
             final_tokens = postags
             #print "mode1"
             #final_tokens = []
@@ -649,6 +650,7 @@ class Util(object):
                 #print lemmas
                 #final_tokens.append(unir)
             #print final_tokens
+        
         
         #print lemmas
         #final_tokens = tokens
