@@ -77,6 +77,7 @@ from gensim.models.word2vec import Word2Vec
 from gensim.matutils import Dense2Corpus
 from numpy import transpose
 from nltk.classify.util import log_likelihood
+from build.lib.feature_space_tree.attributes.filters_terms import Vocabulary
 from ..attributes.virtuals \
 import FilterTermsVirtualGlobalProcessor, FilterTermsVirtualReProcessor
 from ..representations.extensions import FreqDistExt
@@ -1639,8 +1640,11 @@ class EnumRepresentation(object):
      VW2V,
      SOA2,
      TFIDF,
-     BOW_ARG,
+     BOWARG,
      ATTR) = range(11)
+
+
+# que se pasara de encabezado
 
 class AttributeHeader(object):
 
@@ -1663,6 +1667,24 @@ class AttributeHeaderBOW(AttributeHeader):
 
     def get_attributes(self):
         return self._vocabulary
+    
+    
+# agregar mis atributos --- ATTR ------ son otros
+
+class AttributeHeaderATTR(AttributeHeader):
+
+    def __init_(self, fdist, vocabulary, concepts):
+        super(AttributeHeaderATTR, self).__init__(fdist, vocabulary, concepts)
+
+    def get_attributes(self):
+        return ["longitud_oracion","longitud_palabras"]
+        #return self._vocabulary
+
+
+#------ fin de ATTR header attr
+    
+    
+    
     
 class AttributeHeaderTFIDF(AttributeHeader):
 
@@ -1880,22 +1902,7 @@ class Distances2CDAttributeHeader(DecoratorAttributeHeader):
             self.__str_concepts += ["prototype_" + str(e)]
             
         return self.__str_concepts
-
-
-# agregar mis atributos --- ATTR ------ son otros
-
-class AttributeHeaderATTR(AttributeHeader):
-
-    def __init_(self, fdist, vocabulary, concepts):
-        super(AttributeHeaderATTR, self).__init__(fdist, vocabulary, concepts)
-
-    def get_attributes(self):
-        return ["longitud_oracion","longitud_palabras"]
-        #return self._vocabulary
-
-
-#------ fin de ATTR header attr
-
+    
         
 class FactoryRepresentation(object):
 
@@ -1940,12 +1947,11 @@ class FactorySimpleRepresentation(FactoryRepresentation):
         if option == EnumRepresentation.TFIDF:
             return FactoryTFIDFRepresentation()
         
-        if option == EnumRepresentation.BOW_ARG:
+        if option == EnumRepresentation.BOWARG:
             return FactoryBOWARGRepresentation()
-                   
+        
         if option == EnumRepresentation.ATTR:
             return FactoryATTRRepresentation()
-
 
 
 class AbstractFactoryRepresentation(object):
@@ -2048,6 +2054,7 @@ class FactoryBOWRepresentation(AbstractFactoryRepresentation):
         self.__bow_train_matrix_holder =  self.__bow_train_matrix_holder.load_train_data(space)
         return self.__bow_train_matrix_holder
     
+
 
 class FactoryBOWRepresentation_bak(AbstractFactoryRepresentation):
 
@@ -2948,6 +2955,7 @@ class FactoryLDARepresentation_bak(AbstractFactoryRepresentation):
         
         return self.__lda_train_matrix_holder 
         
+#-------------------------------bowarg ----------------------
 
 class FactoryBOWARGRepresentation(AbstractFactoryRepresentation):
 
@@ -3015,7 +3023,9 @@ class FactoryBOWARGRepresentation(AbstractFactoryRepresentation):
         self.__bow_train_matrix_holder =  self.__bow_train_matrix_holder.load_train_data(space)
         return self.__bow_train_matrix_holder
 
+# fin de bowarg
 
+# --------------factory rep attr
 
 #-------------------------------attr factory rep ----------------------
 
@@ -3089,7 +3099,6 @@ class FactoryATTRRepresentation(AbstractFactoryRepresentation):
 # fin de bowarg
 
 # --------------factory rep attr
-
 
 class MatrixHolder(object):
 
@@ -10189,6 +10198,7 @@ class ExampleTestMatrixHolder(BOWMatrixHolder):
         self._instance_namefiles = value
         
 
+#----------- matrix holder ------  bowarg
 
 class BOWARGMatrixHolder(MatrixHolder):
 
@@ -10333,6 +10343,8 @@ class BOWARGMatrixHolder(MatrixHolder):
         t2 = time.time()
         print "End of BOW representation. Time: ", str(t2-t1)
 
+
+
 class BOWARGTrainMatrixHolder(BOWARGMatrixHolder):
 
     def __init__(self, space):
@@ -10456,7 +10468,8 @@ class BOWARGTestMatrixHolder(BOWARGMatrixHolder):
 
 
         
-# ----------------------------------------        
+# ----------------------------------------  fin bowarg --------       
+
 
 
 #----------- inicia matrix holder ------  ATTR
@@ -10608,7 +10621,9 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
 #                             num_marcadores = num_marcadores +1
 #                             #print freq, pal
 #                             mensaje_marcadores += "->"+str(freq)+pal
-                          
+                             
+                             
+                            
                         #empieza por el termino 1
                         
                         matrix_docs_terms[i, unorder_dict_index[pal]] = freq   #+1000   #premiar de la lista de tokens+1000
@@ -10672,9 +10687,9 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         
         #print space.kwargs_space
         #print space._vocabulary
-        #print matrix_docs_terms
-        #print instance_categories
-        #print instance_namefiles
+        print matrix_docs_terms
+        print instance_categories
+        print instance_namefiles
         
         #mensaje_marcadores+=str(num_marcadores)
         #print mensaje_marcadores
@@ -10814,7 +10829,6 @@ class ATTRTestMatrixHolder(ATTRMatrixHolder): #-----------------
 
         
 # ----------------------------------------  fin attr -------- 
-
 
 class Report(object):
 
