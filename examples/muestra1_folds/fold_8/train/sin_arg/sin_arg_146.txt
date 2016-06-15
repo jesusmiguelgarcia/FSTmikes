@@ -1,0 +1,1 @@
+De igual forma, las órdenes de control que viajan por la red pueden ser interceptadas y alteradas al momento de pasar por el nodo comprometido, acarreando un mal funcionamiento de la WSN, llegando en algunos casos incluso a poner en riesgo la integridad de elementos circundantes al sensor o del sensor mismo.

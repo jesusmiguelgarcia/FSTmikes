@@ -1,0 +1,1 @@
+Sabemos que el protocolo IP se refiere a la forma de fraccionar los datos a enviar en bloques.

@@ -1,0 +1,1 @@
+Menor costo de personal. Las empresas desarrolladoras de software hacen uso de sus recursos acorde a las necesidades de los proyectos, con base a esto es posible que un consultor este asignado a más de un proyecto. Los gastos y administración del personal son delegados al tercero que se encarga de desarrollar la aplicación Web.

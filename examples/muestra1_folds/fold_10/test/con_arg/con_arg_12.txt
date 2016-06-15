@@ -1,0 +1,1 @@
+El efecto de la limitación del ancho de banda en el canal de subida es muy importante. Nuestro modelo evita que un tráfico excesivo sature el canal de subida, pudiendo soportar una mayor carga efectiva que el resto de modelos evaluados.

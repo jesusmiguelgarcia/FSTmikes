@@ -1,0 +1,1 @@
+Por tal motivo el procesamiento debe ser computacionalmente lo más eficiente posible, ya que de ello va a depender la veracidad de los resultados y a la hora de hacer una prueba del sistema de reconocimiento, nos entregara un resultado satisfactorio.

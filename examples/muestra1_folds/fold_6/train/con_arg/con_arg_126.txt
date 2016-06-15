@@ -1,0 +1,1 @@
+Debido a que la seguridad de una red de comunicaciones es vulnerable a ataques e intrusión, y el uso de Firewalls1 ya no es suficiente para frenar este fenómeno como se muestra en la Figura 1, es por eso que se ha optado por el uso de sistemas capaces de observar y analizar el tráfico en una red de comunicaciones para la detección de intrusos.

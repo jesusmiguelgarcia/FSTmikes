@@ -1,0 +1,1 @@
+El software cuenta con herramientas que permiten agilizar el control del mantenimiento preventivo, llevando un registro de horas, fechas, actividades, piezas y servicios de manera clara y confiable. Estas características permiten tener un control de una flota de helicópteros evitando tiempos muertos por búsqueda en papeles.

@@ -1,0 +1,1 @@
+Los avances de la tecnología han permitido que las líneas de distribución de energía eléctrica sean empleadas como canal de comunicaciones para la transmisión de información de banda ancha. Sin embargo, al no haber sido diseñadas para este propósito son un medio altamente hostil con muchos inconvenientes que dificultan la transmisión de información.

@@ -1,0 +1,1 @@
+Con el objetivo de maximizar el número de usuarios satisfechos, nuestra aproximación al problema trata de obtener los algoritmos de planificación que utilicen con máxima eficacia el ancho de banda disponible, combinando factores como frecuencias de acceso a la información, plazos temporales y consumo de ancho de banda.

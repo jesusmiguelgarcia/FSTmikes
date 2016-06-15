@@ -1,0 +1,1 @@
+La ocurrencia de cualquiera de estos casos anteriores sería en menoscabo de la operación de la WSN, lo que repercutiría en consecuencias acordes a la importancia de la misión que desempeñe dicha red. Esto deja sobre la mesa la necesidad de contar con mecanismos de autenticidad que operen en las WSNs.

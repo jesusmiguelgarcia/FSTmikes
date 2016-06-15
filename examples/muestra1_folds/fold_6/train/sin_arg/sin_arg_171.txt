@@ -1,0 +1,1 @@
+Los elementos implicados en esta investigación estarán conformados por una computadora, una cámara Web para poder capturar la imagen y el uso de MATLAB que será el lenguaje en donde se programara la lógica del sistema.

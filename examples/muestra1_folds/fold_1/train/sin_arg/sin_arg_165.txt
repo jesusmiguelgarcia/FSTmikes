@@ -1,0 +1,1 @@
+Este trabajo, aunque demuestra lo básico en el funcionamiento de la transmisión de datos, también presenta algunas limitaciones, las cuales representa líneas abiertas a la investigación para futuros trabajos de monografía.

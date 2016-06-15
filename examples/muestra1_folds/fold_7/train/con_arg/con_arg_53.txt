@@ -1,0 +1,1 @@
+Como se puede observar en la Figura anterior, las empresas pueden perder productividad e información si son víctimas de un ataque a sus sistemas, como bien se sabe la información que se maneja en los sistemas es de vital importancia para el funcionamiento del negocio por lo que se pone en juego la continuidad de este si un ataque tiene éxito.

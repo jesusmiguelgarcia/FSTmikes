@@ -1,0 +1,1 @@
+Por otra parte se logró hacer que el software fuera más gráfico, y con ayuda de los asesores se integraron funciones que son necesarias para las empresas que controlan el mantenimiento preventivo de helicópteros.

@@ -1,0 +1,1 @@
+El problema a resolver es la búsqueda de un mecanismo que permita el uso de operaciones de criptografía asimétrica en un ambiente de redes de sensores, para operar de forma eficiente un protocolo de autenticación que permita explotar las características de flexibilidad y escalabilidad en dicho ambiente.

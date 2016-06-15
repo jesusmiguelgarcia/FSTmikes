@@ -1,0 +1,1 @@
+Se pretende que el sistema que se está desarrollando, tenga un costo bajo, lo cual permitirá que tenga mayor accesibilidad por parte de usuarios y empresas.

@@ -1,0 +1,1 @@
+En cuanto a su desempeño, el IDS diseñado realiza la oportuna detección de los ataques a través del análisis de paquetes lo que le permite detectar e identificar el tipo de intrusión que transitó por el sistema de seguridad por lo que el IDS es eficiente y funcional ante las características del funcionamiento de otros equipos comercialmente distribuidos.

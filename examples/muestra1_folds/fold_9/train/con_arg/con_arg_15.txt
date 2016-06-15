@@ -1,0 +1,1 @@
+Con base en estas cuatro propiedades, los escenarios de riesgo en una WSN, y sobre todo, considerando el impacto de un ataque sobre la operación de la red, se considera que el problema de la suplantación de nodos es uno de los más severos dada la mecánica de operación de la red. A fin de ilustrar esta situación, en las siguientes líneas se plantea un ataque hipotético.

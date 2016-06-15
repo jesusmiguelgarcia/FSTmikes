@@ -1,0 +1,1 @@
+Una restricción fuerte de estos algoritmos es que los conceptos deben ser disjuntos, es decir, los objetos sólo pueden pertenecer a una clase. Sin embargo, en muchos problemas reales no sucede así, ya que los objetos pueden pertenecer a más de una clase y en este caso los conceptos deberían ser no disjuntos.

@@ -1,0 +1,1 @@
+En términos generales, el problema de establecimiento de identidad tiene solución mediante un proceso de autenticación entre pares. En las redes de comunicaciones y en los sistemas de información, este proceso comúnmente involucra el uso de mecanismos criptográficos, ya sean de clave secreta o simétricos, o bien de clave pública o asimétricos.

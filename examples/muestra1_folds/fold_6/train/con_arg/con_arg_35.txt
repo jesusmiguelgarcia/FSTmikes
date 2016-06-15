@@ -1,0 +1,1 @@
+El Cortafuegos se encuentra estable, ya que se cubrió más del 70% de los apartados identificados en NIST, Sin embargo, los hallazgos encontrados a mediano y largo plazo pueden afectar considerablemente la continuidad del negocio y por lo tanto se recomienda tomar acciones inmediatas para cubrirlos.

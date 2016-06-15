@@ -1,0 +1,1 @@
+Diferentes han sido los avances en el estudio de este tema de tesis, la lógica difusa para procesar los parámetros del algoritmo handoff, también se ha encontrado en la misma línea de investigación resultados en el rendimiento mediante redes neuronales, los cuales se han basado en sistemas de reconocimiento de patrones [4].

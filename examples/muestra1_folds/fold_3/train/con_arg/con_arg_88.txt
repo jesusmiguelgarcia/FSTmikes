@@ -1,0 +1,1 @@
+2. Los métodos arquitectónicos del SEI están pensados para que sean usados en el diseño de sistemas complejos de alto riesgo. Está característica los hace ser pesados y costosos en términos de documentación, recursos financieros, de calendario, capacitación, etc.

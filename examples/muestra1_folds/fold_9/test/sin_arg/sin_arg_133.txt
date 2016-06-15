@@ -1,0 +1,1 @@
+El modelo AHB presentado y analizado en la presente tesis utiliza difusión con modo híbrido de transmisión, esto es, transmisión periódica y bajo demanda, permitiendo a los usuarios demandar información con requisitos temporales.

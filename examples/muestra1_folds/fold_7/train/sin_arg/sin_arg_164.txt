@@ -1,0 +1,1 @@
+El objetivo es establecer estándares mundiales de diseño para todos los protocolos de datos de telecomunicaciones con la idea de que todos los equipos que se fabriquen sean compatibles.

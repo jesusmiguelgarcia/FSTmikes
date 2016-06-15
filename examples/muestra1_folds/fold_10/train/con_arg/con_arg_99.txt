@@ -1,0 +1,1 @@
+El IDS implementado en la simulación es un sistema diseñado en función de reglas para la detección de amenazas y basado en Red, ya que se monitorean los paquetes o datos que transitan en la red lo que le permite alertar de manera oportuna la detección de ataques que pueden afectar a los elementos o computadoras que componen a la red.

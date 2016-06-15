@@ -1,0 +1,1 @@
+De igual manera, este proyecto puede ser aplicado a diversos tipos de móviles (que cumplan con ciertas restricciones) y el algoritmo aquí presentado podrá servir como base para otros proyectos en el ámbito de móviles controlados para evasión de obstáculos.

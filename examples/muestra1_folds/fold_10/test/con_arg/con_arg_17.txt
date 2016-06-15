@@ -1,0 +1,1 @@
+La realización del primer ataque es muy simple, ya que como se ha dicho anteriormente, uno de los problemas del dispositivo en sí es la facilidad de ser capturado, ya que la mayoría de las veces los sensores no cuentan con mecanismos de protección física alguna, además de estar expuestos a fallas, e interrupción en su servicio.

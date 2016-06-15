@@ -1,0 +1,1 @@
+En cuanto a la utilización de Técnicas de V&amp;V, las empresas en su gran mayoría (98.25) menciono que sí utiliza, además se observa en la pregunta 3 de la sección de Técnicas que la etapas en las cuales las utilizan son: Implementación, Integración y Pruebas y Diseño con una diferencia pequeña del 1% entre cada etapa.

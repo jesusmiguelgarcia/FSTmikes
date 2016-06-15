@@ -1,0 +1,1 @@
+. Para finalizar, la principal contribución de esta tesis ha sido la definición de un listado de métodologías, Herramientas y Técnicas de V&amp;V que se definieron en la sección 4.4, para el proceso de desarrollo, que sirvan para tomar como base para desarrollar sistemas.

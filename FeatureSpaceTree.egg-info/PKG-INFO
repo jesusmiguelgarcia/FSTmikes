@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: FeatureSpaceTree
+Version: .01
+Summary: An easy way to perform preprocessing tasks in text-clasification
+Home-page: https://github.com/beiceman/FeatureSpaceTree
+Author: Adrian Pastor Lopez-Monroy
+Author-email: pastor@ccc.inaoep.mx
+License: Apache License, Version 2.0
+Description: FeatureSpaceTree is a framework for scientists and students of computer science that simplify the textual-feature-extraction and representation of documents. These are two common previous stages in text-classification.
+Keywords: feature-extraction text-classification tex-mining preprocessing-text
+Platform: UNKNOWN

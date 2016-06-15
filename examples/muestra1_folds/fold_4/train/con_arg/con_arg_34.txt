@@ -1,0 +1,1 @@
+Con todo esto se aprendieron muchas cosas, desde la instalación de un sitio Web hasta el manejo del DBMS como lo es SQL Server. Con ello podemos observar que podemos combinar varias tecnologías que están al alcance de nuestras manos para poder realizar software con excelente manufactura y eficiencia.

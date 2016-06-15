@@ -1,0 +1,1 @@
+El trabajo futuro incluye extender la funcionalidad de nuestro modelo para incorporar mecanismos que permitan la difusión de información multimedia con calidades de servicio garantizadas.

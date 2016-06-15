@@ -1,0 +1,1 @@
+También es interesante estudiar la posibilidad de incorporar técnicas de aprendizaje al servidor para variar algunos parámetros que hemos considerado fijos (BW_Limit, Cooling_Factor, Expected_Sample_Size), en función de la distribución de acceso a los datos, con el objetivo de mejorar las prestaciones.

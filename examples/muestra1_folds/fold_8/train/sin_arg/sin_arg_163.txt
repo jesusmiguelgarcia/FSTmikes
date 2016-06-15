@@ -1,0 +1,1 @@
+TCP es el que se encarga del transporte de datagramas IP: en el ordenador de origen se encarga de la creación de los datagramas, su secuencia, su identificación, del control de errores y de su envío.

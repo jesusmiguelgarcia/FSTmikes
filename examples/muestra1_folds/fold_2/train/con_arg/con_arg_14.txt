@@ -1,0 +1,1 @@
+Con el fin de establecer claramente los riesgos a que se expone la información en una WSN en un ataque, conviene retomar una definición de la seguridad de la información, la cual consiste en otorgarle a la información cuatro propiedades básicas, como se indica en [50]: Confidencialidad, Autenticidad, Integridad, Disponibilidad.

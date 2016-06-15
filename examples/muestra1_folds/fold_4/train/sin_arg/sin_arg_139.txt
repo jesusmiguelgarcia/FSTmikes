@@ -1,0 +1,1 @@
+Los clasificadores basados en patrones permiten clasificar objetos con calidad competitiva y a veces superior a otros clasificadores, obteniéndose con ellos modelos fácilmente legibles e interpretables por los usuarios. No obstante su eficacia está estrechamente relacionada con la calidad de los patrones que utilizan.

@@ -1,0 +1,1 @@
+Dada la dinámica de operación de las WSN, y las posibilidades de ocurrencia de un ataque de suplantación, es conveniente evaluar que tan graves podrían ser los daños en caso de la realización del mismo, para así tener una mejor perspectiva del enfoque del problema que adopta el presente estudio.

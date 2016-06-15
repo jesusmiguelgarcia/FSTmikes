@@ -1,0 +1,1 @@
+Adicionalmente, se ha identificado que la secuencia con la cual el SEI propone que los métodos sean realizados tiene potenciales riesgos de re-trabajo en la documentación arquitectónica, esto se debe a que una vez que el diseño ha sido documentado se evalúa y en caso de que se necesiten correcciones la documentación se tiene que actualizar.

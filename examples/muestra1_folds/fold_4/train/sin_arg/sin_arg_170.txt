@@ -1,0 +1,1 @@
+Lo que significa que el margen de error debe ser mínimo, ya que de no ser así podría ocasionar problemas en una situación real.

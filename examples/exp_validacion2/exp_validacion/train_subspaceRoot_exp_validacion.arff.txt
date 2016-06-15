@@ -1,0 +1,6 @@
+deportes/1.txt deportes
+deportes/2.txt deportes
+noticias/1.txt noticias
+noticias/2.txt noticias
+tecnologia/1.txt tecnologia
+tecnologia/2.txt tecnologia

@@ -1,0 +1,1 @@
+Por tal motivo se pretende diseñar un sistema flexible a un menor costo y que además nos permita poder adaptarlo para aplicaciones como acceso a una escuela, una casa, un auto, una caja de seguridad, etc.

@@ -1,0 +1,1 @@
+En cuanto a la comparación del IDS diseñado con otros sistemas de seguridad comerciales se puede comentar que nuestro sistema para la detección de intrusos puede ser implementado en distintas tasas de procesamiento de tráfico (en Mbps), pues como se presenta en la simulación esta tasa es de 50 Mbps y que posteriormente puede ser variable.

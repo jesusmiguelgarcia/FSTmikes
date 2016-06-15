@@ -1,0 +1,1 @@
+Como hemos mencionado existen limitantes entre las cuales podemos observar las siguientes: Tiempo de vida de Software y Hardware Seguridad mayor en la sección Web, es decir, agregar certificados y encripción de datos.

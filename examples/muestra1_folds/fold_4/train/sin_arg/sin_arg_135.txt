@@ -1,0 +1,1 @@
+Es especialmente relevante el hecho de que nuestro modelo tiene en cuenta que el ancho de banda en el canal de subida es limitado y que las frecuencias de acceso a los datos son cambiantes en un escenario realista (especialmente si los usuarios tienen movilidad).

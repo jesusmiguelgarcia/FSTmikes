@@ -1,0 +1,1 @@
+Debido a que su sistema de red de computadoras se encuentra en crecimiento, se encontró la necesidad de implementar un sistema de detección de intrusos a su medida, mediante el monitoreo de su tráfico de usuarios cuando acceden al Word Wide Web, debido a que lo más importante para ellos es la integridad de su información a publicar.

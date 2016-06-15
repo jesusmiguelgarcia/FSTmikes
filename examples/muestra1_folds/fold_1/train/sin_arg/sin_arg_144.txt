@@ -1,0 +1,1 @@
+Para el caso del segundo ataque, si bien se requiere la construcción de un sensor compatible con la WSN, esto no parece ser muy complicado una vez que se tiene la posibilidad de capturar uno o más nodos originales y recuperar información del mismo que permita completar la construcción.

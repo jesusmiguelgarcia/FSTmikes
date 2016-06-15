@@ -1,0 +1,1 @@
+Sin embargo, las herramientas que se han diseñado hasta el momento tienen algunas limitantes al ser aplicados en problemas donde se tienen objetos descritos por variables cualitativas y cuantitativas mezcladas. Además, no permiten trabajar con ausencia de información en las descripciones de los objetos.

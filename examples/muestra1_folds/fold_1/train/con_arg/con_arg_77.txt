@@ -1,0 +1,1 @@
+Dado que han sido diversas las herramientas de solución y modelado del algoritmo, por lo tanto, con base en los resultados que los modelos asociativos Alfa-Beta han logrado en casos similares al de este tema de tesis, se pretende aplicar, observar y comparar su desempeño en cómputo con los actuales algoritmos handoff diseñados.

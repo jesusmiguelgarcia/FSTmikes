@@ -1,0 +1,1 @@
+Por último, otra línea de trabajo sería la modificación del algoritmo de planificación para considerar diferentes clases de usuarios, con diferentes prioridades en el acceso a la información, así como diferentes tipos de plazos (rígidos y no rígidos).

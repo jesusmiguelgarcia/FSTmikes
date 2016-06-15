@@ -1,0 +1,9 @@
+Experiment_name: exp_validacion
+Base_path: ./exp_validacion_DOR
+Space_path: ./exp_validacion_DOR/exp_validacion/sub_space_1
+Categories: ['deportes', 'noticias', 'tecnologia']
+Train_corpus_config: <CategorizedPlaintextCorpusReader in u'/home/miguel/Documentos/FeatureSpaceTree-master/examples/nltk_data/corpora/validacion/train'>
+corpus_file_list_train: 
+1    deportes/1.txt                      2    deportes/2.txt                      3    noticias/1.txt                      
+4    noticias/2.txt                      5    tecnologia/1.txt                    6    tecnologia/2.txt                    
+

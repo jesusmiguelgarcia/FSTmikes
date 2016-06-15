@@ -1,0 +1,1 @@
+Otro aspecto interesante es que esta propuesta no está diseñada para sustituir a los AG's, sino como una alternativa en aquellas aplicaciones donde existan restricciones de hardware, por ejemplo, en el consumo de recursos.

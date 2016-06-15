@@ -1,0 +1,15 @@
+@relation my_relation
+@attribute 1_attr_document_0 numeric      % real name: 'document_0'
+@attribute 2_attr_document_1 numeric      % real name: 'document_1'
+@attribute 3_attr_document_2 numeric      % real name: 'document_2'
+@attribute 4_attr_document_3 numeric      % real name: 'document_3'
+@attribute 5_attr_document_4 numeric      % real name: 'document_4'
+@attribute 6_attr_document_5 numeric      % real name: 'document_5'
+@attribute categories {deportes, noticias, tecnologia}
+@data
+7.0715716085, 0.783735023928, 0.507241211135, 0.734695400797, 0.0, 0.0,  deportes    deportes_1_txt
+0.621095311714, 5.5298634386, 0.665801975534, 0.0, 0.0, 0.0,  deportes    deportes_2_txt
+0.450476422536, 0.74612848111, 3.30935106885, 2.38053995584, 0.0, 0.0,  noticias    noticias_1_txt
+0.450476422536, 0.0, 1.64354910762, 3.07468591925, 0.53353571073, 0.483219425451,  noticias    noticias_2_txt
+0.0, 0.0, 0.0, 0.694145963418, 3.01592055302, 1.82580464251,  tecnologia    tecnologia_1_txt
+0.0, 0.0, 0.0, 0.694145963418, 2.01592056587, 6.82580454256,  tecnologia    tecnologia_2_txt

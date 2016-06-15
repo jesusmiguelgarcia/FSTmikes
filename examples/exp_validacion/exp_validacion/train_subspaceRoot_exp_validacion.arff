@@ -1,0 +1,34 @@
+@relation my_relation
+@attribute 1_attr_las numeric      % real name: 'las'
+@attribute 2_attr_de numeric      % real name: 'de'
+@attribute 3_attr_compus numeric      % real name: 'compus'
+@attribute 4_attr_son numeric      % real name: 'son'
+@attribute 5_attr_la numeric      % real name: 'la'
+@attribute 6_attr_torre numeric      % real name: 'torre'
+@attribute 7_attr_pemex numeric      % real name: 'pemex'
+@attribute 8_attr_es numeric      % real name: 'es'
+@attribute 9_attr_ numeric      % real name: ','
+@attribute 10_attr_este numeric      % real name: 'este'
+@attribute 11_attr_buena numeric      % real name: 'buena'
+@attribute 12_attr_hermosas numeric      % real name: 'hermosas'
+@attribute 13_attr_buenas numeric      % real name: 'buenas'
+@attribute 14_attr_nataci_n numeric      % real name: 'natación'
+@attribute 15_attr_todo numeric      % real name: 'todo'
+@attribute 16_attr_habla numeric      % real name: 'habla'
+@attribute 17_attr_lo numeric      % real name: 'lo'
+@attribute 18_attr_explot numeric      % real name: 'explotó'
+@attribute 19_attr_documento numeric      % real name: 'documento'
+@attribute 20_attr_para numeric      % real name: 'para'
+@attribute 21_attr_salud numeric      % real name: 'salud'
+@attribute 22_attr_divertidas numeric      % real name: 'divertidas'
+@attribute 23_attr_deportes numeric      % real name: 'deportes'
+@attribute 24_attr_futbol numeric      % real name: 'futbol'
+@attribute 25_attr_y numeric      % real name: 'y'
+@attribute categories {deportes, noticias, tecnologia}
+@data
+0.0, 0.222222222222, 0.0, 0.0, 0.0, 0.0, 0.0, 0.111111111111, 0.0, 0.111111111111, 0.0, 0.0, 0.0, 0.0, 0.0, 0.111111111111, 0.0, 0.0, 0.111111111111, 0.0, 0.0, 0.0, 0.111111111111, 0.111111111111, 0.111111111111,  deportes    deportes_1_txt
+0.0, 0.0, 0.0, 0.0, 0.285714285714, 0.0, 0.0, 0.142857142857, 0.0, 0.0, 0.142857142857, 0.0, 0.0, 0.142857142857, 0.0, 0.0, 0.0, 0.0, 0.0, 0.142857142857, 0.142857142857, 0.0, 0.0, 0.0, 0.0,  deportes    deportes_2_txt
+0.0, 0.2, 0.0, 0.0, 0.2, 0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  noticias    noticias_1_txt
+0.25, 0.25, 0.0, 0.0, 0.0, 0.25, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  noticias    noticias_2_txt
+0.25, 0.0, 0.25, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  tecnologia    tecnologia_1_txt
+0.2, 0.0, 0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.133333333333, 0.0, 0.0, 0.0666666666667, 0.0, 0.0, 0.0666666666667, 0.0, 0.0666666666667, 0.0, 0.0, 0.0, 0.0, 0.0666666666667, 0.0, 0.0, 0.0,  tecnologia    tecnologia_2_txt

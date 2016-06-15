@@ -1,0 +1,1 @@
+De las herramientas seleccionadas por las empresas pueden ser aplicados solo en la etapa de Implementación, por lo que existe una contradicción ya que la mayor parte menciona que pone esfuerzo en el uso de herramientas de V&amp;V en otras fases del desarrollo.

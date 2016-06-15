@@ -1,0 +1,1 @@
+Este proyecto de tesis busca crear un sistema a escala, que integre un piloto automático y la interacción de este con el medio en el que se desenvuelve, es decir, evitando que colisione con los objetos a su alrededor.

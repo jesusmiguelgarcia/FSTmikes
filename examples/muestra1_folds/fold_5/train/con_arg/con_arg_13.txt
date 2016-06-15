@@ -1,0 +1,1 @@
+El proceso de extracción automática de patrones ha estado desde sus inicios limitado por el costo computacional de las búsquedas exhaustivas. Para ello se han introducidos numerosas soluciones, pero esto se ha hecho al coste de limitar el lenguaje de representación de los patrones.

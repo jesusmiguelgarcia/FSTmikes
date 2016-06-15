@@ -1,0 +1,1 @@
+Para esta red, la ejecución de un ataque de suplantación es una situación no muy ajena a la realidad. Este ataque puede llevarse a cabo por lo menos de las siguientes dos formas: Con la captura de un nodo y la manipulación del mismo.

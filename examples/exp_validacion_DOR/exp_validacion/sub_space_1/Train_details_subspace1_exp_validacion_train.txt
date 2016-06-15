@@ -1,0 +1,9 @@
+Author: deportes
+File's list:
+1    deportes/1.txt                      2    deportes/2.txt                      
+Author: noticias
+File's list:
+1    noticias/1.txt                      2    noticias/2.txt                      
+Author: tecnologia
+File's list:
+1    tecnologia/1.txt                    2    tecnologia/2.txt                    

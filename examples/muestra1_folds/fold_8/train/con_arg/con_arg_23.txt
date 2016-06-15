@@ -1,0 +1,1 @@
+También es importante desarrollar algoritmos conceptuales difusos ya que en problemas reales el especialista puede estar interesado en conocer en qué grado pertenece un objeto a cada uno de los agrupamientos, más que saber si un objeto pertenece o no a un agrupamiento.

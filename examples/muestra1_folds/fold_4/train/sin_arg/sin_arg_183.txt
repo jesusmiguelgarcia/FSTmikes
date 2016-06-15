@@ -1,0 +1,1 @@
+Los módulos diseñados que forman parte del algoritmo genético compacto pueden ser de utilidad en el diseño de otros tipos de algoritmos bio-inspirados, incrementando la cantidad de alternativas para implementar motores de búsqueda en hardware.

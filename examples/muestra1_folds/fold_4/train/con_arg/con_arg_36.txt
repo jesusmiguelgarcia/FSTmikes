@@ -1,0 +1,1 @@
+También es importante el modelo OSI, ya que el principio de este modelo es el de los protocolos de capas.

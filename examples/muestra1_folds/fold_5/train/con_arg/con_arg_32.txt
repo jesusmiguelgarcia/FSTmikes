@@ -1,0 +1,1 @@
+El diseño responde a los requerimientos del manual de mantenimiento que indica Bell y las necesidades de la autoridad aeronáutica, ya que fue desarrollado con la colaboración de profesores con la experiencia en el control de mantenimiento, quienes conocen las necesidades y requerimientos para utilizar el software en la industria.

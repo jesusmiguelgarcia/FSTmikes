@@ -1,0 +1,1 @@
+Realizar una implementación del modelo en microempresas con un número de empleados superior a siete y analizar el funcionamiento del modelo y las mejoras posibles.

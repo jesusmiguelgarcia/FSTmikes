@@ -1,0 +1,8 @@
+1    (u'las', 6)                         2    (u'de', 5)                          3    (u'son', 4)                         
+4    (u'la', 3)                          5    (u'es', 2)                          6    (u',', 2)                           
+7    (u'este', 1)                        8    (u'buena', 1)                       9    (u'hermosas', 1)                    
+10   (u'buenas', 1)                      11   (u'nataci\xf3n', 1)                 12   (u'todo', 1)                        
+13   (u'habla', 1)                       14   (u'lo', 1)                          15   (u'explot\xf3', 1)                  
+16   (u'documento', 1)                   17   (u'para', 1)                        18   (u'salud', 1)                       
+19   (u'divertidas', 1)                  20   (u'deportes', 1)                    21   (u'futbol', 1)                      
+22   (u'y', 1)                           
