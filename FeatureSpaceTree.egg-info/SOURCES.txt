@@ -32,6 +32,8 @@ feature_space_tree/experiments/experiment_advanced.py
 feature_space_tree/experiments/experiment_simple.py
 feature_space_tree/experiments/experiment_splited.py
 feature_space_tree/representations/__init__.py
+feature_space_tree/representations/atributos_mk.py
 feature_space_tree/representations/extensions.py
+feature_space_tree/representations/representations (copia)_falla_attr.py
 feature_space_tree/representations/representations.py
 feature_space_tree/representations/representations_backup.py

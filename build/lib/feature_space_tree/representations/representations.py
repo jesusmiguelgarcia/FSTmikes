@@ -83,7 +83,8 @@ from ..attributes.virtuals \
 import FilterTermsVirtualGlobalProcessor, FilterTermsVirtualReProcessor
 from ..representations.extensions import FreqDistExt
 
-from atributos_mk import maracadores_florou
+from atributos_mk import maracadores_florou, verbos_florou
+
 
 
 class bcolors(object):
@@ -10685,7 +10686,7 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 #print tokens
                 
                 for atributo in range(len(atributos)):
-                    #matrix_docs_terms_mk[i, atributo] = 0
+                    #matrix_docs_terms_mk[i, atributo] = 0                    
                     if "longitud_texto" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = tamDoc
                     if "longitud_oracion" in atributos[atributo]:
@@ -10700,6 +10701,14 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[3]
                     if "condicional" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[4]
+                        
+                        
+                    if "Rel_t_P" in atributos[atributo]:
+                        attr_verbos = verbos_florou(tokens)
+                        for j in range(len(attr_verbos)):
+                            matrix_docs_terms_mk[i, atributo+j] = attr_verbos[j]
+                            #print atributo+j
+                        break
 
                     
                     

@@ -36,6 +36,8 @@
 # list of one)in kwargs[sources]; it iterates and get the respective tokens.
 # The ModeString calculates the tokens in kwargs["string"].
 #===============================================================================
+# calc_POS_FREELING
+
 
 import re
 import nltk.data

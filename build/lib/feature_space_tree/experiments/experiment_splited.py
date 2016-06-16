@@ -327,7 +327,7 @@ def main_function():
     print representations.Util.get_string_fancy_time(t2 - t1,
                                                      'End of the principal script')
     
-    print "********************************************************************"
+    print "******************************************************************** :) "
 
 # These lines are useless since the script cannot be executed from this lines.
 # It does not detect the package feature_space_tree, and if I move the script

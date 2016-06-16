@@ -1,3 +1,15 @@
 eclipse.preferences.version=1
+encoding//build/lib/feature_space_tree/attributes/attr_util.py=utf-8
+encoding//build/lib/feature_space_tree/representations/extensions.py=utf-8
+encoding//feature_space_tree/attributes/attr.py=utf-8
+encoding//feature_space_tree/attributes/attr_config.py=utf-8
+encoding//feature_space_tree/attributes/attr_util.py=utf-8
 encoding//feature_space_tree/attributes/cliente_freeling_mk.py=utf-8
+encoding//feature_space_tree/attributes/modes.py=utf-8
+encoding//feature_space_tree/experiments/experiment_splited.py=utf-8
+encoding//feature_space_tree/representations/atributos_mk.py=utf-8
+encoding//feature_space_tree/representations/extensions.py=utf-8
+encoding//feature_space_tree/representations/representations\ (copia)_falla_attr.py=utf-8
+encoding//feature_space_tree/representations/representations.py=utf-8
 encoding/cliente_freeling_mk.py=utf-8
+encoding/entry_point.py=utf-8
