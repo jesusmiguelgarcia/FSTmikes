@@ -83,6 +83,9 @@ from ..attributes.virtuals \
 import FilterTermsVirtualGlobalProcessor, FilterTermsVirtualReProcessor
 from ..representations.extensions import FreqDistExt
 
+from atributos_mk import maracadores_florou
+
+
 class bcolors(object):
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -10687,6 +10690,18 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                         matrix_docs_terms_mk[i, atributo] = tamDoc
                     if "longitud_oracion" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = tamDoc*2
+                    if "justificacion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[0]
+                    if "explicacion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[1]
+                    if "deduccion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[2]
+                    if "refutacion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[3]
+                    if "condicional" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[4]
+
+                    
                     
                 
                 #matrix_docs_terms_mk[i, 0] = tamDoc #primer atributo
