@@ -153,26 +153,26 @@ def POS_freeling(texto, regexp):
 
 #uso de freeling para lemas y tags
 
+# # # 
+# regexp = "[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+-*[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[.]+|[/,$?:;!()&%#=+{}*~.]+"
+#     
+# linex = "Mary año tiene un borrego acasffss.  es una causa perdida. Los niños juegan."
+# line = " Los niños juegan. La propuesta se distingue por incorporar la representación de la experiencia en el modelo del estudiante. Generalmente, las aplicaciones afines se concentran en representar el conocimiento adquirido por el estudiante GRUNDY (Rich, 1979), sus atributos personales Smex Web (Albrecht et al., 2000), conductas observadas ELM-PE (Brusilovsky, 1995b), distorsiones en el aprendizaje Modelos de Diagnóstico (Brown y Burton, 1978) y el conocimiento de enseñanza ADAPS (Brusilovsky y Cooper, 1999). En cambio, en el presente trabajo los atributos de la experiencia forman parte del propio modelo del estudiante. Como resultado, se obtiene una representación más rica del fenómeno de estudio, puesto que se consideran a dos protagonistas: el emisor y el receptor del conocimiento que se transmite y adquiere."
+# words, postags, lemmas, tuplas = POS_freeling(linex, regexp)
+#    
+# print tuplas
+#    
+# #parte de POS
+# sufix_tag = []
+# for i in range(len(postags)):
+#     print postags[i]
+#     if len(postags[i])>4:
+#         sufix_tag.append(postags[i][0:4])
+#     else:
+#         sufix_tag.append(postags[i])
+#            
+# print sufix_tag
 # # 
-regexp = "[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+-*[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[.]+|[/,$?:;!()&%#=+{}*~.]+"
-    
-linex = "Mary año tiene un borrego acasffss.  es una causa perdida. Los niños juegan."
-line = " Los niños juegan. La propuesta se distingue por incorporar la representación de la experiencia en el modelo del estudiante. Generalmente, las aplicaciones afines se concentran en representar el conocimiento adquirido por el estudiante GRUNDY (Rich, 1979), sus atributos personales Smex Web (Albrecht et al., 2000), conductas observadas ELM-PE (Brusilovsky, 1995b), distorsiones en el aprendizaje Modelos de Diagnóstico (Brown y Burton, 1978) y el conocimiento de enseñanza ADAPS (Brusilovsky y Cooper, 1999). En cambio, en el presente trabajo los atributos de la experiencia forman parte del propio modelo del estudiante. Como resultado, se obtiene una representación más rica del fenómeno de estudio, puesto que se consideran a dos protagonistas: el emisor y el receptor del conocimiento que se transmite y adquiere."
-words, postags, lemmas, tuplas = POS_freeling(linex, regexp)
-   
-print tuplas
-   
-#parte de POS
-sufix_tag = []
-for i in range(len(postags)):
-    print postags[i]
-    if len(postags[i])>4:
-        sufix_tag.append(postags[i][0:4])
-    else:
-        sufix_tag.append(postags[i])
-           
-print sufix_tag
-# 
 
 
 
