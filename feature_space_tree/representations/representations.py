@@ -34,6 +34,8 @@
 # ==============================================================================
 #BOWMatrixHolder
 
+#modificando ATTRMatrixHolder y AttributeHeaderATTR  FactoryATTRRepresentation
+
 
 
 import math
@@ -1890,7 +1892,11 @@ class AttributeHeaderATTR(AttributeHeader):
         super(AttributeHeaderATTR, self).__init__(fdist, vocabulary, concepts)
 
     def get_attributes(self):
-        return ["longitud_oracion","longitud_palabras"]
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        #print "concepts en atributos"        
+        #print self._concepts.split(",")
+        
+        return self._concepts.split(",")
         #return self._vocabulary
 
 
@@ -3022,11 +3028,14 @@ class FactoryBOWARGRepresentation(AbstractFactoryRepresentation):
 class FactoryATTRRepresentation(AbstractFactoryRepresentation):
 
     def create_attribute_header(self, fdist, vocabulary, concepts, space=None):
-        self.__bow_attribute_header = AttributeHeaderATTR(fdist, vocabulary, concepts) # -----------
+        self.__bow_attribute_header = AttributeHeaderATTR(fdist, vocabulary, space.kwargs_space["argument_x"]) # -----------
         #print "create_attribute_header", vocabulary
-        # Decorating --------------------------------------------------
-        if 'decorators_matrix' in space.kwargs_space:   
-            
+        #print "create_attribute_header"
+        #Decorating --------------------------------------------------
+        #print "space kwargs space",space.kwargs_space
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        
+        if 'decorators_matrix' in space.kwargs_space:
             self.__bow_attribute_header = Util.decorate_attribute_header(self.__bow_attribute_header,
                                                                         space,  
                                                                         space.kwargs_space['decorators_matrix'])
@@ -10483,7 +10492,9 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         #len_vocab_original = len_vocab
         
         #len_vocab = 2 # esto lo cambie para indicar el numero de atributos especiales procesados
-        
+        #atributos = ["longitud_oracion","longitud_palabras"]
+        atributos = space.kwargs_space["argument_x"].split(",")
+        #"hola a todos".split()
         
         Util.create_a_dir(space.space_path + "/sparse")
         rows_file = open(space.space_path + "/sparse/" + space.id_space + "_" + "rows_sparse.txt", "w")
@@ -10495,7 +10506,9 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         #-------agraga argument_x y factor para premiar marcadores
         
         # NOTAS: print "INFO_ARG: ", space.kwargs_space
-        #print "VAL_attib_X:", space.kwargs_space["atributos_x"]
+        
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        
         #tomar valores de la lista
         #factor=space.kwargs_space["factor"]
         #json_data=""
@@ -10523,11 +10536,17 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
             matrix_docs_terms = numpy.zeros((len(corpus_file_list), len_vocab),
                                         dtype=numpy.float64)
             dense_flag = True
-            print "aqui construye matriz con ceros filex x atrib (2)"
+            #print "aqui construye matriz con ceros filex x atrib (2)" #si entra aqui
         
         instance_categories = []
         instance_namefiles = []
         
+        #mi matriz para usar con los atributos
+        
+        matrix_docs_terms_mk = numpy.zeros((len(corpus_file_list), len(atributos)),
+                                        dtype=numpy.float64)
+        
+        #print "matrix_docs_terms_mk",matrix_docs_terms_mk
         #cambiar vocabulario
         
         #lo pone todo en un diccionario tofos los terminos y crea un vector del tamaño del vocab
@@ -10535,9 +10554,12 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         # SUPER SPEED 
         unorder_dict_index = {}
         for (term, u) in zip(space._vocabulary, range(len_vocab)):
+        #for (term, u) in zip(atributos, range(len_vocab)):
             unorder_dict_index[term] = u
-            
         
+        
+        
+        #atributos
         
         #print "unorder_dict_index", unorder_dict_index
         
@@ -10555,6 +10577,7 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 
                 
                 #------------------------------modificar ---------------------
+                # toma el primer documento y cuenta 
                 
                 
                 tokens = virtual_classes_holder[autor].dic_file_tokens[arch]
@@ -10568,8 +10591,6 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 #print "tamDoc", tamDoc
                 
                 
-                
-                
                 ################################################################
                 # SUPER SPEED 
                 
@@ -10579,26 +10600,33 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 # o bien para extraccion de atributos especificos
                 
                 
-                
+                #usar texto para sacar los 2 atributos
                 #analisis por palabra -- para eso se usa el for de abajo
                 
+                #atributo 1
+                #matrix_docs_terms[i, unorder_dict_index[0]] = tamDoc
+                
+                #atributo 2
+                #matrix_docs_terms[i, unorder_dict_index[1]] = tamDoc
+              
+              
+#                 
+#                 
                 for pal in docActualFd.keys_sorted():
-                    
+                     
                     if (pal in unorder_dict_index) and tamDoc > 0:
                         freq = docActualFd[pal] ##/ float(tamDoc) #para normalizar pastor
                         #print "PAL_VALOR", pal #es el token 
+                        # pal es la palabra en cuestion aqui recorreo todas las palabras
                     else:
                         freq = 0.0
-                    
+                     
                     #freq almacena la frecuencia del atributo en cuestion
                     # indicar atributos especificos?  agregarlos en un posfilter
                     #  en arch y autor se guarda la categoria 
-                    
-                    
-                    
-#                     
+                      
                     if dense_flag:
-                        
+                         
 #                         if pal in json_data:
 #                             
 #                             mensaje_marcadores +=str(freq)
@@ -10608,12 +10636,13 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
 #                             num_marcadores = num_marcadores +1
 #                             #print freq, pal
 #                             mensaje_marcadores += "->"+str(freq)+pal
-                          
+                           
                         #empieza por el termino 1
-                        
-                        matrix_docs_terms[i, unorder_dict_index[pal]] = freq   #+1000   #premiar de la lista de tokens+1000
+                         
+                        matrix_docs_terms[i, unorder_dict_index[pal]] = freq   #+1000   tamDoc  #premiar de la lista de tokens+1000
+                        #aqui meter las funciones para recorrer los terminos
                         #print "freq",freq
-                    
+                     
                     #escribir las frecuencias en el archivos sparce
                     if freq > 0.0:
                         rows_file.write(str(i) + "\n")  #orden 
@@ -10647,6 +10676,22 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 
                 #fin de analisis por palabra
                 
+                #meter atributos calculados apartir del texto
+                #aqui tengo acceso a los tokens
+                
+                #print tokens
+                
+                for atributo in range(len(atributos)):
+                    #matrix_docs_terms_mk[i, atributo] = 0
+                    if "longitud_texto" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = tamDoc
+                    if "longitud_oracion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = tamDoc*2
+                    
+                
+                #matrix_docs_terms_mk[i, 0] = tamDoc #primer atributo
+                #matrix_docs_terms_mk[i, 1] = tamDoc+12 #segundo atributo
+                
                 i+=1
                 
                 instance_categories += [autor]
@@ -10657,7 +10702,7 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         
         
 
-        self._matrix = matrix_docs_terms   #matriz buena creada
+        self._matrix = matrix_docs_terms_mk   #matriz buena creada mk a ver
         # matriz completa por si se le quiere aplicar TF IDF
         self._instance_categories = instance_categories # categoria por instancia
         self._instance_namefiles = instance_namefiles # nombre de archivo por instancia
@@ -10672,7 +10717,7 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         
         #print space.kwargs_space
         #print space._vocabulary
-        #print matrix_docs_terms
+        #print matrix_docs_terms_mk
         #print instance_categories
         #print instance_namefiles
         

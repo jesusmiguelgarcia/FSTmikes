@@ -34,6 +34,8 @@
 # ==============================================================================
 #BOWMatrixHolder
 
+#modificando ATTRMatrixHolder y AttributeHeaderATTR  FactoryATTRRepresentation
+
 
 
 import math
@@ -1639,7 +1641,8 @@ class EnumRepresentation(object):
      VW2V,
      SOA2,
      TFIDF,
-     BOW_ARG) = range(10)
+     BOW_ARG,
+     ATTR) = range(11)
 
 class AttributeHeader(object):
 
@@ -1879,7 +1882,26 @@ class Distances2CDAttributeHeader(DecoratorAttributeHeader):
             self.__str_concepts += ["prototype_" + str(e)]
             
         return self.__str_concepts
-    
+
+
+# agregar mis atributos --- ATTR ------ son otros
+
+class AttributeHeaderATTR(AttributeHeader):
+
+    def __init_(self, fdist, vocabulary, concepts):
+        super(AttributeHeaderATTR, self).__init__(fdist, vocabulary, concepts)
+
+    def get_attributes(self):
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        #print "concepts en atributos"        
+        #print self._concepts.split(",")
+        
+        return self._concepts.split(",")
+        #return self._vocabulary
+
+
+#------ fin de ATTR header attr
+
         
 class FactoryRepresentation(object):
 
@@ -1926,6 +1948,10 @@ class FactorySimpleRepresentation(FactoryRepresentation):
         
         if option == EnumRepresentation.BOW_ARG:
             return FactoryBOWARGRepresentation()
+                   
+        if option == EnumRepresentation.ATTR:
+            return FactoryATTRRepresentation()
+
 
 
 class AbstractFactoryRepresentation(object):
@@ -2994,6 +3020,84 @@ class FactoryBOWARGRepresentation(AbstractFactoryRepresentation):
         
         self.__bow_train_matrix_holder =  self.__bow_train_matrix_holder.load_train_data(space)
         return self.__bow_train_matrix_holder
+
+
+
+#-------------------------------attr factory rep ----------------------
+
+class FactoryATTRRepresentation(AbstractFactoryRepresentation):
+
+    def create_attribute_header(self, fdist, vocabulary, concepts, space=None):
+        self.__bow_attribute_header = AttributeHeaderATTR(fdist, vocabulary, space.kwargs_space["argument_x"]) # -----------
+        #print "create_attribute_header", vocabulary
+        #print "create_attribute_header"
+        #Decorating --------------------------------------------------
+        #print "space kwargs space",space.kwargs_space
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        
+        if 'decorators_matrix' in space.kwargs_space:
+            self.__bow_attribute_header = Util.decorate_attribute_header(self.__bow_attribute_header,
+                                                                        space,  
+                                                                        space.kwargs_space['decorators_matrix'])
+        # Decorating --------------------------------------------------      
+           
+        return self.__bow_attribute_header
+
+    def create_matrix_train_holder(self, space):        
+        self.__bow_train_matrix_holder = ATTRTrainMatrixHolder(space)  #----------
+        
+        # Decorating --------------------------------------------------
+        # print space.kwargs_space
+        if 'decorators_matrix' in space.kwargs_space:  
+            self.__bow_train_matrix_holder = Util.decorate_matrix_holder(self.__bow_train_matrix_holder,
+                                                                     space, 
+                                                                     space.kwargs_space['decorators_matrix'],
+                                                                     "train")
+        # Decorating --------------------------------------------------
+        
+        self.__bow_train_matrix_holder.build_matrix()
+        return self.__bow_train_matrix_holder 
+
+    def create_matrix_test_holder(self,space):
+        self.__bow_test_matrix_holder = ATTRTestMatrixHolder(space) #--------------
+        
+        # Decorating --------------------------------------------------
+        if 'decorators_matrix' in space.kwargs_space:   
+            self.__bow_test_matrix_holder = Util.decorate_matrix_holder(self.__bow_test_matrix_holder,
+                                                                        space,  
+                                                                        space.kwargs_space['decorators_matrix'],
+                                                                        "test")
+        # Decorating --------------------------------------------------
+        
+        self.__bow_test_matrix_holder.build_matrix()
+        return self.__bow_test_matrix_holder
+    
+    def save_train_data(self, space):
+        
+        if self.__bow_train_matrix_holder is not None:
+            self.__bow_train_matrix_holder.save_train_data(space)
+        else:
+            print "ERROR CSA: There is not a train matrix terms concepts built"
+            
+    def load_train_data(self, space):
+        
+        self.__bow_train_matrix_holder = ATTRTrainMatrixHolder(space) #--------
+        
+        # Decorating --------------------------------------------------
+        print space.kwargs_space
+        if 'decorators_matrix' in space.kwargs_space:  
+            self.__bow_train_matrix_holder = Util.decorate_matrix_holder(self.__bow_train_matrix_holder,
+                                                                     space, 
+                                                                     space.kwargs_space['decorators_matrix'],
+                                                                     "train")
+        # Decorating --------------------------------------------------
+        
+        self.__bow_train_matrix_holder =  self.__bow_train_matrix_holder.load_train_data(space)
+        return self.__bow_train_matrix_holder
+
+# fin de bowarg
+
+# --------------factory rep attr
 
 
 class MatrixHolder(object):
@@ -10362,6 +10466,403 @@ class BOWARGTestMatrixHolder(BOWARGMatrixHolder):
 
         
 # ----------------------------------------        
+
+
+#----------- inicia matrix holder ------  ATTR
+
+class ATTRMatrixHolder(MatrixHolder): #---------------------
+
+    def __init__(self, space):
+        super(ATTRMatrixHolder, self).__init__() #-------------
+        self.space = space
+        #self.build_matrix()
+
+    def build_matrix_doc_terminos(self,
+                                  space,
+                                  virtual_classes_holder,
+                                  corpus_file_list):
+
+        t1 = time.time()
+        print "Starting BOW ATTR representation..."
+        
+        len_vocab = len(space._vocabulary)
+        
+        #print "longitud vocabulario",len_vocab
+        
+        #len_vocab_original = len_vocab
+        
+        #len_vocab = 2 # esto lo cambie para indicar el numero de atributos especiales procesados
+        #atributos = ["longitud_oracion","longitud_palabras"]
+        atributos = space.kwargs_space["argument_x"].split(",")
+        #"hola a todos".split()
+        
+        Util.create_a_dir(space.space_path + "/sparse")
+        rows_file = open(space.space_path + "/sparse/" + space.id_space + "_" + "rows_sparse.txt", "w")
+        columns_file = open(space.space_path + "/sparse/" + space.id_space + "_" + "columns_sparse.txt", "w")
+        vals_file = open(space.space_path + "/sparse/" + space.id_space + "_" + "vals_sparce.txt", "w")
+        
+        dense_flag = True
+        
+        #-------agraga argument_x y factor para premiar marcadores
+        
+        # NOTAS: print "INFO_ARG: ", space.kwargs_space
+        
+        #print "argument_x:", space.kwargs_space["argument_x"]
+        
+        #tomar valores de la lista
+        #factor=space.kwargs_space["factor"]
+        #json_data=""
+        
+        #cadena= space.kwargs_space["atributos_x"]
+        #print "cadena",cadena
+        
+        #with open(cadena) as json_file:
+           # json_data = json.load(json_file)
+            #print json_data[0]
+            
+            
+            #folds[x] = json_data
+        #promedio += json_data["acc"]
+        #acc.append(json_data["acc"])
+        
+        #  ----- crear matrices con ceros ------ ver forma de dejar tamaño de los attr que me interesan 
+        
+        
+        
+        if ('sparse' in space.kwargs_space) and space.kwargs_space['sparse']:            
+            matrix_docs_terms = numpy.zeros((1, 1), dtype=numpy.float64)
+            dense_flag = False
+        else:
+            matrix_docs_terms = numpy.zeros((len(corpus_file_list), len_vocab),
+                                        dtype=numpy.float64)
+            dense_flag = True
+            #print "aqui construye matriz con ceros filex x atrib (2)" #si entra aqui
+        
+        instance_categories = []
+        instance_namefiles = []
+        
+        #mi matriz para usar con los atributos
+        
+        matrix_docs_terms_mk = numpy.zeros((len(corpus_file_list), len(atributos)),
+                                        dtype=numpy.float64)
+        
+        #print "matrix_docs_terms_mk",matrix_docs_terms_mk
+        #cambiar vocabulario
+        
+        #lo pone todo en un diccionario tofos los terminos y crea un vector del tamaño del vocab
+        ################################################################
+        # SUPER SPEED 
+        unorder_dict_index = {}
+        for (term, u) in zip(space._vocabulary, range(len_vocab)):
+        #for (term, u) in zip(atributos, range(len_vocab)):
+            unorder_dict_index[term] = u
+        
+        
+        
+        #atributos
+        
+        #print "unorder_dict_index", unorder_dict_index
+        
+        # {u'en': 4, u'de': 0, u'que': 3, u',': 1, u'la': 2}
+        # solo diccionario con los ordenes por valor
+        
+        ###############################################################    
+        #num_marcadores=0
+        #mensaje_marcadores = "MENSAJE_MARCADORES:"
+            
+        i = 0      
+        for autor in space.categories:
+            archivos = virtual_classes_holder[autor].cat_file_list
+            for arch in archivos:
+                
+                
+                #------------------------------modificar ---------------------
+                # toma el primer documento y cuenta 
+                
+                
+                tokens = virtual_classes_holder[autor].dic_file_tokens[arch]
+                
+                #print "tokens", tokens
+                # NOTAS: print "TOKENS: ",tokens
+                docActualFd = FreqDistExt(tokens) #virtual_classes_holder[autor].dic_file_fd[arch]  #todos los tokens
+                #print "docActualFd", docActualFd
+                
+                tamDoc = len(tokens)
+                #print "tamDoc", tamDoc
+                
+                
+                ################################################################
+                # SUPER SPEED 
+                
+                #keys_sorted solo para ordenarlos por el mas frecuente 
+                
+                #aqui entraria la funcion para extraer frecuencias por parrafo
+                # o bien para extraccion de atributos especificos
+                
+                
+                #usar texto para sacar los 2 atributos
+                #analisis por palabra -- para eso se usa el for de abajo
+                
+                #atributo 1
+                #matrix_docs_terms[i, unorder_dict_index[0]] = tamDoc
+                
+                #atributo 2
+                #matrix_docs_terms[i, unorder_dict_index[1]] = tamDoc
+              
+              
+#                 
+#                 
+                for pal in docActualFd.keys_sorted():
+                     
+                    if (pal in unorder_dict_index) and tamDoc > 0:
+                        freq = docActualFd[pal] ##/ float(tamDoc) #para normalizar pastor
+                        #print "PAL_VALOR", pal #es el token 
+                        # pal es la palabra en cuestion aqui recorreo todas las palabras
+                    else:
+                        freq = 0.0
+                     
+                    #freq almacena la frecuencia del atributo en cuestion
+                    # indicar atributos especificos?  agregarlos en un posfilter
+                    #  en arch y autor se guarda la categoria 
+                      
+                    if dense_flag:
+                         
+#                         if pal in json_data:
+#                             
+#                             mensaje_marcadores +=str(freq)
+#                              
+#                             freq=freq * int(factor)
+#                              
+#                             num_marcadores = num_marcadores +1
+#                             #print freq, pal
+#                             mensaje_marcadores += "->"+str(freq)+pal
+                           
+                        #empieza por el termino 1
+                         
+                        matrix_docs_terms[i, unorder_dict_index[pal]] = freq   #+1000   tamDoc  #premiar de la lista de tokens+1000
+                        #aqui meter las funciones para recorrer los terminos
+                        #print "freq",freq
+                     
+                    #escribir las frecuencias en el archivos sparce
+                    if freq > 0.0:
+                        rows_file.write(str(i) + "\n")  #orden 
+                        columns_file.write(str(unorder_dict_index[pal]) + "\n")  #
+                        vals_file.write(str(freq) + "\n")    #guarda freciencia
+                    
+                ################################################################
+
+                ################################################################
+                # VERY SLOW
+#                j = 0
+#                for pal in space._vocabulary:
+#                        
+#                    if (pal in docActualFd) and tamDoc > 0:
+#                        #print str(freq) + " antes"
+#                        freq = docActualFd[pal] / float(tamDoc) #math.log((1 + docActual.diccionario[pal] / float(docActual.tamDoc)), 10) / math.log(1+float(docActual.tamDoc),10)
+##                        freq = math.log((1 + diccionario[pal] / (2*float(tamDoc))), 2)
+##                        freq = math.log((1 + docActual.diccionario[pal] / (float(docActual.tamDoc))), 2)
+#                        #print str(freq) + " despues"
+#                        # uncomment the following line if you want a boolean weigh :)
+#                        # freq=1.0
+#                        #if pal == "xico":
+#                        #    print pal +"where found in: "  +arch
+#                    else:
+#                        freq = 0
+##                    terminos[j] += freq
+#                    matrix_docs_terms[i,j] = freq
+#
+#                    j += 1
+                    ############################################################
+                
+                #fin de analisis por palabra
+                
+                #meter atributos calculados apartir del texto
+                #aqui tengo acceso a los tokens
+                
+                #print tokens
+                
+                for atributo in range(len(atributos)):
+                    matrix_docs_terms_mk[i, atributo] = 99
+                    if "longitud_texto" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = tamDoc
+                    if "longitud_oracion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = tamDoc*2
+                    
+                        
+                        
+                    
+                    
+                
+                #matrix_docs_terms_mk[i, 0] = tamDoc #primer atributo
+                #matrix_docs_terms_mk[i, 1] = tamDoc+12 #segundo atributo
+                
+                i+=1
+                
+                instance_categories += [autor]
+                instance_namefiles += [arch]
+
+        
+        #esto es lo que manda para contruir la matriz revisar
+        
+        
+
+        self._matrix = matrix_docs_terms_mk   #matriz buena creada mk a ver
+        # matriz completa por si se le quiere aplicar TF IDF
+        self._instance_categories = instance_categories # categoria por instancia
+        self._instance_namefiles = instance_namefiles # nombre de archivo por instancia
+        
+        #print "variables a enviar y modificar"
+        
+        #self._matrix = [[  7,   6  ],  [ 7,   62 ],  [ 73,   6 ]]
+
+        #self._instance_categories = ['con_arg', 'con_arg', 'sin_arg']
+
+        #self._instance_namefiles = [u'con_arg/con_arg_1.txt', u'con_arg/con_arg_10.txt',u'con_arg/con_arg_100.txt', u'con_arg/con_arg_101.txt', u'con_arg/con_arg_102.txt', u'con_arg/con_arg_103.txt']
+        
+        #print space.kwargs_space
+        #print space._vocabulary
+        #print matrix_docs_terms_mk
+        #print instance_categories
+        #print instance_namefiles
+        
+        #mensaje_marcadores+=str(num_marcadores)
+        #print mensaje_marcadores
+        
+        rows_file.close()
+        columns_file.close()
+        vals_file.close()
+
+        #print matConceptosTerm
+
+        t2 = time.time()
+        print "End of BOW representation. Time: ", str(t2-t1)
+
+
+
+class ATTRTrainMatrixHolder(ATTRMatrixHolder): #----------------
+
+    def __init__(self, space):
+        super(ATTRTrainMatrixHolder, self).__init__(space) #----------------
+
+    def normalize_matrix(self):
+        pass
+
+    def build_matrix(self):
+        self.build_matrix_doc_terminos(self.space,
+                                       self.space.virtual_classes_holder_train,
+                                       self.space.corpus_file_list_train)
+
+    def get_matrix(self):
+        return self._matrix
+    
+    def get_instance_categories(self):
+        return self._instance_categories
+    
+    def get_instance_namefiles(self):
+        return self._instance_namefiles
+    
+    def set_matrix(self, value):
+        self._matrix = value
+    
+    def set_instance_categories(self, value):
+        self._instance_categories = value
+    
+    def set_instance_namefiles(self, value):
+        self._instance_namefiles = value
+        
+    # ----------------------------------------------------------------------------------        
+    def get_matrix_terms(self):    # return some useful information for Decorators e.g. term matrix
+        pass
+    
+    def set_matrix_terms(self, value):    # set some useful information for Decorators e.g. term matrix
+        pass
+        
+    def get_shared_resource(self):    # return some useful information for Decorators e.g. term matrix
+        pass
+    
+    def set_shared_resource(self, value):    # set some useful information for Decorators e.g. term matrix
+        pass        
+        
+    def save_train_data(self, space):
+        
+        if self is not None:
+            cache_file = "%s/%s" % (space.space_path, space.id_space)
+            
+            numpy.save(cache_file + "_mat_docs_terms.npy", 
+                       self.get_matrix())
+            
+            numpy.save(cache_file + "_instance_namefiles.npy", 
+                       self.get_instance_namefiles())
+            
+            numpy.save(cache_file + "_instance_categories.npy", 
+                       self.get_instance_categories())
+        else:
+            print "ERROR BOW: There is not a train matrix terms concepts built"
+
+    def load_train_data(self, space):
+        cache_file = "%s/%s" % (space.space_path, space.id_space)
+        
+        bow_train_matrix_holder = ATTRTrainMatrixHolder(space)    #-------------    
+        bow_train_matrix_holder.set_matrix(numpy.load(cache_file + "_mat_docs_terms.npy"))
+        bow_train_matrix_holder.set_instance_namefiles(numpy.load(cache_file + "_instance_namefiles.npy"))
+        bow_train_matrix_holder.set_instance_categories(numpy.load(cache_file + "_instance_categories.npy"))      
+        
+        return bow_train_matrix_holder 
+
+
+class ATTRTestMatrixHolder(ATTRMatrixHolder): #-----------------
+
+    def __init__(self, space):
+        super(ATTRTestMatrixHolder, self).__init__(space) #--------------
+
+    def normalize_matrix(self):
+        pass
+
+    def build_matrix(self):
+        self.build_matrix_doc_terminos(self.space,
+                                       self.space.virtual_classes_holder_test,
+                                       self.space.corpus_file_list_test)
+
+    def get_matrix(self):
+        return self._matrix
+    
+    def get_instance_categories(self):
+        return self._instance_categories
+    
+    def get_instance_namefiles(self):
+        return self._instance_namefiles
+    
+    def set_matrix(self, value):
+        self._matrix = value
+    
+    def set_instance_categories(self, value):
+        self._instance_categories = value
+    
+    def set_instance_namefiles(self, value):
+        self._instance_namefiles = value
+        
+    # ----------------------------------------------------------------------------------        
+    def get_matrix_terms(self):    # return some useful information for Decorators e.g. term matrix
+        pass
+    
+    def set_matrix_terms(self, value):    # set some useful information for Decorators e.g. term matrix
+        pass
+        
+    def get_shared_resource(self):    # return some useful information for Decorators e.g. term matrix
+        pass
+    
+    def set_shared_resource(self, value):    # set some useful information for Decorators e.g. term matrix
+        pass      
+    
+    def save_train_data(self, space):
+        pass
+
+    def load_train_data(self, space):
+        pass
+
+
+        
+# ----------------------------------------  fin attr -------- 
 
 
 class Report(object):
