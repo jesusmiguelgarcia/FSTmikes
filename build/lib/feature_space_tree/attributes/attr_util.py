@@ -631,6 +631,7 @@ class Util(object):
         words, postags, lemmas, tuplas = POS_freeling(string, regexp)
         
         #print tuplas
+        # word, lemma, pos, index, multiword?
         
         if(pos == "lemas"):
             final_tokens = lemmas
@@ -652,6 +653,23 @@ class Util(object):
                 #print lemmas
                 #final_tokens.append(unir)
             #print final_tokens
+        
+        if(pos == "lemas_tag1"):
+            lemas_tag = []
+            for tupla in tuplas:
+                item_lema_tag = tupla[1]+"~"+tupla[2][0]
+                lemas_tag.append(item_lema_tag)
+            final_tokens = lemas_tag
+        
+        if(pos == "lemas_tag2"):
+            lemas_tag = []
+            for tupla in tuplas:
+                item_lema_tag = tupla[1]+"~"+tupla[2][0]+tupla[2][0]
+                lemas_tag.append(item_lema_tag)
+            final_tokens = lemas_tag
+            
+            #print tuplas
+        # word - 0, lemma -1 , pos -2, index -3, multiword?
         
         
         #print lemmas
