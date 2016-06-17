@@ -4,8 +4,14 @@ echo "respaldo en bitbicket"
 
 #git pull -u origin master
 
-git add *.*
-
+git add *.py
+git add *.java
+git add *.json
+git add *.yaml
+git add *.sh
+git add *.csv
+git add *.cvs
+git add *.class
 
 git commit -m 'respaldo experimento pwd $1'
 
