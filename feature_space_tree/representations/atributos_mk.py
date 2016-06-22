@@ -36,6 +36,7 @@ def freq_lema_ngrams(list_monograms,list_lemas):
 
 def maracadores_florou(monograms_solo_lemas):
     
+    
     #valores para tiempos
     dm= [0,0,0,0,0]
     dm_nom= ["justificacion","explicacion","deduccion","refutacion","condicional"]
@@ -51,7 +52,8 @@ def maracadores_florou(monograms_solo_lemas):
     
     
     lemas_string= " ".join(monograms_solo_lemas)
-    
+  
+    #caracteristicas enriquecidas traducidas directamente
     pc_justificacion=["(porque)","(como)","(la razón ser)","(el motivo ser)", "(deber a)","(a causa de)","(razón de que)", "(motivo de que)" ]
     pc_explicacion=["(en otro palabra)","(de otro modo)", "(decir de otro modo)","(la razón ser)","(el motivo ser)", "(deber a)","(a causa de)","(razón de que)", "(motivo de que)", "(por este razón)", "(por este motivo)", "(por ese razón)", "(por ello)", "(por ejemplo)"]
     pc_deduccion=["(a consecuencia de)","(demostrar que)","(probar que)", "(establecer que)", "(concluir que)", "(deducir que)", "(inferir que)", "(implicar que)" , "(de acuerdo a el anterior)"]
@@ -92,6 +94,67 @@ def maracadores_florou(monograms_solo_lemas):
     
     #fin buscar palabras claves
     
+    
+    
+def maracadores_florou_enriquecidos(monograms_solo_lemas):
+                
+    #valores para tiempos
+    dm= [0,0,0,0,0]
+    dm_nom= ["justificacion","explicacion","deduccion","refutacion","condicional"]
+    
+    
+    # buscar palabras claves
+    #dm= [0,0,0,0,0]
+    #dm_nom= ["justificacion","explicacion","deduccion","refutacion","condicional"]
+    
+    markers_count=[]
+    
+    #lematizar con freeling antes
+    
+    
+    lemas_string= " ".join(monograms_solo_lemas)
+    
+    #caracteristicas enriquecidas
+    pc_justificacion=["a causa de","a el fin y a el cabo","a el fin y a el postre","a fin de cuenta","como","como mostrar","como ser indicar por","con decir te","dar que","de acuerdo con","de hecho","deber a","deber se a","después de todo","el anterior porque","el motivo ser","el razón ser","el razón ser que","en tanto que","en vista de que","gracia a","motivo de que","no en vano","poner que ser consecuencia de","por causa de","por cuanto","por todo ello","porque","pues","puesto que","razón de que","se poder deducir de","se poder derivar de","se seguir de","ser que","ver que","ya que"]
+    pc_explicacion=["a causa de","a fin de cuenta","así","de otro modo","deber a","decir de otro modo","el motivo ser","en concreto","en definitivo","en otro palabra","en particular","el razón ser","motivo de que","poner","poner por caso","por ejemplo","por ello","por ese razón","por este motivo","por este razón","razón de que","uno ejemplo","uno poner"]
+    pc_deduccion=["a consecuencia de","a el fin y a el cabo","ante el anterior","así","así pues","así que","como conclusión","como consecuencia","como resultado","concluir que","conclusión","consecuentemente","consiguientemente","correspondientemente","de acuerdo a el anterior","de ahí que","de este forma","de manera que","de tal forma","de tal manera","deducir que demostrar que","el cual apuntar a el conclusión de que","el cual implicar que","el cual mostrar que","el cual nos permitir inferir que","el cual probar que","el cual significar que","en conclusión","en consecuencia","en definitivo","en fin","en resumen","en resumir cuenta","en sí","en síntesis","en suma","en tal caso","entonces","establecer que","finalmente","implicar que","inferir que","llegar a el","llegar a el conclusión","para","para concluir","para terminar","poder inferir que","por consiguiente","por el que","por el tanto","por ello","por ende","por ese","por este razón","por tanto","por último","probar que","que","resumir","se desprender","se desprender de","se seguir que","ser por ese que"]
+    pc_refutacion=["a el contrario","a menos","a pesar de","a pesar de todo","ahora","antes bien","aun así","aunque","bien a el contrario","de cualquiera modo","de todo modo","después de todo","empero","en cambio","ese sí","mas","más aun","más bien","muy a el contrario","no obstante","no parecer","pero","pero sin embargo","pesar a","por contra","por el contrario","pues","si bien","sin embargo","sino","sólo que"]
+    pc_condicional=["según","con tal que","a condición de que","a menos que","con que","suponer que","aunque","si","en caso de","si y solo si"]
+    
+ 
+    for pc in pc_justificacion:
+        dm[0]+=len(re.findall(pc, lemas_string))
+        if (re.findall(pc, lemas_string)):
+            #print re.findall(pc, lemas_string)                                   #imprime el arreglo con todas las instancias de la palabra clave
+            markers_count.append( pc+" "+str(len(re.findall(pc, lemas_string))) )       # agregar a un  la palabra clave y las veces que se repite
+    
+    for pc in pc_explicacion:
+        dm[1]+=len(re.findall(pc, lemas_string))
+        if (re.findall(pc, lemas_string)):
+            #print re.findall(pc, lemas_string)
+            markers_count.append( pc+" "+str(len(re.findall(pc, lemas_string))) )
+    
+    for pc in pc_deduccion:
+        dm[2]+=len(re.findall(pc, lemas_string))
+        if (re.findall(pc, lemas_string)):
+            #print re.findall(pc, lemas_string)
+            markers_count.append( pc+" "+str(len(re.findall(pc, lemas_string))) )
+            
+    for pc in pc_refutacion:
+        dm[3]+=len(re.findall(pc, lemas_string))
+        if (re.findall(pc, lemas_string)):
+            #print re.findall(pc, lemas_string)
+            markers_count.append( pc+" "+str(len(re.findall(pc, lemas_string))) )
+            
+    for pc in pc_condicional:
+        dm[4]+=len(re.findall(pc, lemas_string))
+        if (re.findall(pc, lemas_string)):
+            #print re.findall(pc, lemas_string)   
+            markers_count.append( pc+" "+str(len(re.findall(pc, lemas_string))) )
+    
+    return dm
+    
+    #fin buscar palabras claves
     
 
 def verbos_florou(monograms_solo_tags):

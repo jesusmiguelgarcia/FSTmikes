@@ -83,7 +83,7 @@ from ..attributes.virtuals \
 import FilterTermsVirtualGlobalProcessor, FilterTermsVirtualReProcessor
 from ..representations.extensions import FreqDistExt
 
-from atributos_mk import maracadores_florou, verbos_florou
+from atributos_mk import maracadores_florou, verbos_florou, maracadores_florou_enriquecidos
 
 
 
@@ -10701,7 +10701,17 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[3]
                     if "condicional" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[4]
-                        
+                    if "justificacionx" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[0]
+                    if "explicacionx" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[1]
+                    if "deduccionx" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[2]
+                    if "refutacionx" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[3]
+                    if "condicionalx" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[4]
+                                   
                         
                     if "Rel_t_P" in atributos[atributo]:
                         attr_verbos = verbos_florou(tokens)
