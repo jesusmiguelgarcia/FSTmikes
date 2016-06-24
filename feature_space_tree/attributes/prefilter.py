@@ -90,6 +90,24 @@ class ToLowerDecoratorRawStringNormalizer(DecoratorRawStringNormalizer):
         return new_raw_string
 
 
+#---------------------------------------
+#NoAcentosDecoratorRawStringNormalizer
+class NoAcentosDecoratorRawStringNormalizer(DecoratorRawStringNormalizer):
+
+    def __init__(self, raw_string_normalizer):
+        super(NoAcentosDecoratorRawStringNormalizer, self).__init__(raw_string_normalizer)
+
+    def get_raw_string(self):
+
+        old_raw_string = self._raw_string_normalizer.get_raw_string()
+
+        new_raw_string = old_raw_string.encode("utf8").replace("á","a").replace("é","e").replace("í","i").replace("ó","o").replace("ú","u")
+
+        return new_raw_string
+
+
+
+
 #nueva clase para remover las palabras vacias en español del texto raw
 #------------------------------------------------------------------------------
 

@@ -626,6 +626,33 @@ class TermMarkers(Terms):
                                  the_regexp,
 				 self.kwargs["type_marker"])
 
+# -------------------------------------------------
+
+class TermMarkers(Terms):
+
+    def __init__(self, kwargs_terms):
+        super(TermMarkers, self).__init__(kwargs_terms,
+                                         "TermMarkers")
+
+    def calc_terms(self):
+        the_regexp = Util.get_the_regexp(self.kwargs)
+
+        return Util.calc_markers(self.kwargs["string"],
+                                 the_regexp,
+                 self.kwargs["type_marker"])
+
+#TermWord_Pair
+class TermWord_Pair(Terms):
+
+    def __init__(self, kwargs_terms):
+        super(TermWord_Pair, self).__init__(kwargs_terms,
+                                         "TermWord_Pair")
+
+    def calc_terms(self):
+        the_regexp = Util.get_the_regexp(self.kwargs)
+
+        return Util.calc_word_pair(self.kwargs["string"],
+                                 the_regexp)
 
     
 

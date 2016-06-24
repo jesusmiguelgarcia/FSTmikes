@@ -73,7 +73,8 @@ class EnumDecoratorRawStringNormalizer(object):
      JUST_REGEXP,
      IGNORE_STRINGS,
      REPLACE_REGEXP,
-     NO_STOPWORD_SPANISH) = range(6)
+     NO_STOPWORD_SPANISH,
+     NO_ACENTOS) = range(7)
      
 
 class FactorySimpleDecoratorRawStringNormalizer(object):
@@ -106,4 +107,8 @@ class FactorySimpleDecoratorRawStringNormalizer(object):
     
         elif option == EnumDecoratorRawStringNormalizer.NO_STOPWORD_SPANISH:
             return NoStopwordSpanishDecoratorRawStringNormalizer(raw_string_normalizer)
+        
+        if option == EnumDecoratorRawStringNormalizer.NO_ACENTOS:
+            return NoAcentosDecoratorRawStringNormalizer(raw_string_normalizer)
+        
         

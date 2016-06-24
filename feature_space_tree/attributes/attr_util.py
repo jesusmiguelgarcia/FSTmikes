@@ -36,7 +36,7 @@
 # list of one)in kwargs[sources]; it iterates and get the respective tokens.
 # The ModeString calculates the tokens in kwargs["string"].
 #===============================================================================
-# calc_POS_FREELING
+# calc_POS_FREELING  calc_word_pair
 
 
 import re
@@ -51,6 +51,8 @@ from nltk.tag import StanfordTagger
 import Stemmer
 
 from  cliente_freeling_mk import POS_freeling
+from attr_util_mk import *
+
 
 
 class Util(object):
@@ -194,6 +196,20 @@ class Util(object):
         for bigram in bigrams:
             final_tokens += ['~'.join(list(bigram))]
 
+        return final_tokens
+    
+
+#-------------------calcula pares de palabras posibles por oracion -----------
+
+    
+    #calc_word_pair
+
+    @staticmethod
+    def calc_word_pair(string, regexp):
+        tokens = nltk.regexp_tokenize(string, regexp)
+        
+        final_tokens = word_couples_moens(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+        
         return final_tokens
 
 #------------marcadores con regexp o prefilter con regexp ----------------------------
@@ -668,7 +684,19 @@ class Util(object):
                 lemas_tag.append(item_lema_tag)
             final_tokens = lemas_tag
             
-            #print tuplas
+        if(pos == "verbos_principales"):
+            lemas_verbo_principal = []
+            for tupla in tuplas:
+                #print tupla
+                if tupla[2][0] == "V" and tupla[2][1] == "M":
+                    #item_lema_tag = tupla[1]+"~"+tupla[2][0]+tupla[2][0]
+                    lemas_verbo_principal.append(tupla[1])
+                    #print tupla
+                    
+            final_tokens = lemas_verbo_principal
+            
+        
+        #print tuplas
         # word - 0, lemma -1 , pos -2, index -3, multiword?
         
         

@@ -83,7 +83,8 @@ from ..attributes.virtuals \
 import FilterTermsVirtualGlobalProcessor, FilterTermsVirtualReProcessor
 from ..representations.extensions import FreqDistExt
 
-from atributos_mk import maracadores_florou, verbos_florou, maracadores_florou_enriquecidos
+from atributos_mk import *
+
 
 
 
@@ -10691,6 +10692,8 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                         matrix_docs_terms_mk[i, atributo] = tamDoc
                     if "longitud_oracion" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = tamDoc*2
+                    
+                    #caracteristica florou 5 categorias argumetnativas
                     if "justificacion" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou(tokens)[0]
                     if "explicacion" in atributos[atributo]:
@@ -10711,8 +10714,17 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[3]
                     if "condicionalx" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = maracadores_florou_enriquecidos(tokens)[4]
-                                   
-                        
+                    #caracteristicas MOENS estructurales
+                    if "logitud_promedio_oracion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = longitud_promedio_oraciones_moens(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+                        #print longitud_promedio_oraciones_moens(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+                    if "longitud_promedio_palabra" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = longitud_promedio_palabras_moens(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+                    if "cantidad_puntuacion" in atributos[atributo]:
+                        matrix_docs_terms_mk[i, atributo] = numero_puntuacion_moens(" ".join(tokens))
+                                     
+                    
+                    #caracteristicas florou frecuecia de tiempo y modo en verbos
                     if "Rel_t_P" in atributos[atributo]:
                         attr_verbos = verbos_florou(tokens)
                         for j in range(len(attr_verbos)):
