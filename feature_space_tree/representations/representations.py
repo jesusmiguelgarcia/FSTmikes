@@ -160,18 +160,40 @@ class Util(object):
     # to use these parameters. The solution is could be: Just Leave more generic
     # parameters (anyway subclass will specify them, or send it the complete
     # kwargs object. 
+    
+    
+#     @staticmethod
+#     def build_filtered_corpus_from_cat_map(categories, kwargs_corpus):
+#         if 'corpus_path' in kwargs_corpus and\
+#         'corpus_pattern' in kwargs_corpus and\
+#         'file_pattern' in kwargs_corpus and\
+#         'cat_pattern' in kwargs_corpus:
+#             corpus = CorpusCategorizedFromCatMap(categories,
+#                                        kwargs_corpus['corpus_path'],
+#                                        kwargs_corpus['corpus_pattern'],
+#                                        kwargs_corpus['file_pattern'],
+#                                        kwargs_corpus['cat_pattern'],
+#                                        kwargs_corpus['cat_map'],)
+#         else:
+#             corpus = CorpusCategorizedFromCatMap(categories, kwargs_corpus['corpus_path'], kwargs_corpus['cat_map'])
+# 
+#         corpus = Util.decorate_corpus(corpus, kwargs_corpus['filters_corpus'])
+#         return corpus
+
+# actualizacion de pastor 24 de junio 2016
+
     @staticmethod
     def build_filtered_corpus_from_cat_map(categories, kwargs_corpus):
         if 'corpus_path' in kwargs_corpus and\
-        'corpus_pattern' in kwargs_corpus and\
-        'file_pattern' in kwargs_corpus and\
-        'cat_pattern' in kwargs_corpus:
+        'file_pattern' in kwargs_corpus:
+            print "ALL CORPUS OPTIONS."
             corpus = CorpusCategorizedFromCatMap(categories,
                                        kwargs_corpus['corpus_path'],
-                                       kwargs_corpus['corpus_pattern'],
+                                       kwargs_corpus['cat_map'],
+                                       'corpora/(.*/.*)',
                                        kwargs_corpus['file_pattern'],
-                                       kwargs_corpus['cat_pattern'],
-                                       kwargs_corpus['cat_map'],)
+                                       '(.+)/.+')
+           
         else:
             corpus = CorpusCategorizedFromCatMap(categories, kwargs_corpus['corpus_path'], kwargs_corpus['cat_map'])
 
@@ -385,6 +407,9 @@ class Util(object):
         match = re.match(user_corpus_path,
                          corpus_path)
 
+        #print user_corpus_path
+        #print corpus_path
+        #print match.group(1)
         corpus = LazyCorpusLoader(match.group(1),
                                   CategorizedPlaintextCorpusReader,
                                   files_pattern, cat_file=cat_map)

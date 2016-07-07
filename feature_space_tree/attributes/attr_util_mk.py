@@ -32,6 +32,51 @@ def word_couples_moens(lista):
         
     return word_couples
 
+#comenta el dr aurelio incluir la puntuacion a los pares de palabras
+def word_couple_con_puntuacion(lista):
+    word_couples = []
+    regexp = "[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+-*[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[.]+|[/,$?:;!()&%#=+{}*~.]+|[0-9]+"
+    
+    for oracion in lista:
+        tokens = nltk.regexp_tokenize(oracion, regexp)
+        #print len(tokens)
+        pairs = list(itertools.permutations(tokens, 2))
+        for pair in pairs:
+            word_couples.append(pair[0]+"~"+pair[1])
+        
+    return word_couples
+
+
+#word_couple_con_puntuacion_pares_minusculas
+
+def word_couple_con_puntuacion_pares_minusculas(lista):
+    word_couples = []
+    
+    
+    regexp = "[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+-*[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[a-zA-Z'ÁÉÍÓÚáéíóúñÑüÜ]+|[.]+|[/,$?:;!()&%#=+{}*~.]+|[0-9]+"
+    
+    for oracion in lista:
+        
+        #oracion = str(oracion)
+        #oracion = oracion.to_lower
+        #print oracion
+        
+        
+        tokens = nltk.regexp_tokenize(oracion.lower(), regexp)
+        #print len(tokens)
+        
+#         tokens_lower = []
+#         for i in range(len(tokens)):
+#             palabra = str(tokens[i])
+#             tokens_lower.append(palabra.to_lower() )          
+            
+        
+        pairs = list(itertools.permutations(tokens, 2))
+        for pair in pairs:
+            word_couples.append(pair[0]+"~"+pair[1])
+        
+    return word_couples
+
 
 
 #recibe un texto asi que le tendre que hacer join a lo que me manda el programa de pastor
@@ -39,14 +84,13 @@ def word_couples_moens(lista):
 def busca_oraciones_texto_sin_formato_moens(texto):
     texto = texto.replace("\n", " ")
     #arregloTexto = texto.split(".")
-  
-    #segmentado para oraciones en español
+      #segmentado para oraciones en español
     spanish_tokenizer = nltk.data.load("tokenizers/punkt/spanish.pickle")
     oraciones_spanish= spanish_tokenizer.tokenize(texto) # .decode('utf8')
     #print "oraciones"
     #print len(oraciones_spanish)
     #print oraciones_spanish
-   
+      
     return oraciones_spanish
 
 # buscar logitud de oracion

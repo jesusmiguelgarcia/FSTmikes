@@ -628,7 +628,7 @@ class TermMarkers(Terms):
 
 # -------------------------------------------------
 
-class TermMarkers(Terms):
+class TermMarkersx(Terms):
 
     def __init__(self, kwargs_terms):
         super(TermMarkers, self).__init__(kwargs_terms,
@@ -654,7 +654,19 @@ class TermWord_Pair(Terms):
         return Util.calc_word_pair(self.kwargs["string"],
                                  the_regexp)
 
-    
+#TermWord_Pair
+class TermWord_Pair_Opcion(Terms):
+
+    def __init__(self, kwargs_terms):
+        super(TermWord_Pair_Opcion, self).__init__(kwargs_terms,
+                                         "TermWord_Pair_Opcion")
+
+    def calc_terms(self):
+        the_regexp = Util.get_the_regexp(self.kwargs)
+
+        return Util.calc_word_pair_opcion(self.kwargs["string"],
+                                 the_regexp, self.kwargs["opcion"])
+
 
 if __name__ == "__main__":
     print "You have to import this module!"

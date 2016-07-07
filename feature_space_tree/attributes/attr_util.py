@@ -211,11 +211,33 @@ class Util(object):
         final_tokens = word_couples_moens(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
         
         return final_tokens
+    
+    
+    
+      
+    #calc_word_pair
+
+    @staticmethod
+    def calc_word_pair_opcion(string, regexp,opcion):
+        tokens = nltk.regexp_tokenize(string, regexp)
+        final_tokens = tokens
+        
+        if opcion == "puntuacion":
+            final_tokens = word_couple_con_puntuacion(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+        if opcion == "puntuacion_pares_minusculas":
+            final_tokens = word_couple_con_puntuacion_pares_minusculas(busca_oraciones_texto_sin_formato_moens(" ".join(tokens)))
+        
+        return final_tokens
+    
+    
+    
 
 #------------marcadores con regexp o prefilter con regexp ----------------------------
    # @staticmethod
     #def elimina_acentos(origen):
      #   return origen.replace("á","a").replace("é","e").replace("í","i").replace("ó","o").replace("ú","u")
+
+
 
 
 

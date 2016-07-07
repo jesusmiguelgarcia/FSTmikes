@@ -71,7 +71,8 @@ class EnumTermLex(object):
      REG_EXP_IGNORE,
      TAG,
      MARKERS,
-     WORD_PAIR) = range(30)
+     WORD_PAIR,
+     WORD_PAIR_OPCION) = range(31)
      
 
 class FactoryTerm(object):
@@ -185,6 +186,10 @@ class FactoryTermLex(FactoryTerm):
         
         elif option == EnumTermLex.WORD_PAIR:
             return TermWord_Pair(kwargs)
+        
+        elif option == EnumTermLex.WORD_PAIR_OPCION:
+            return TermWord_Pair_Opcion(kwargs)
+        
 
 
         #elif option == EnumTermLex.SFM:
