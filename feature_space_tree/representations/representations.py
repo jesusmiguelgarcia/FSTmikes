@@ -10523,7 +10523,9 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
         
         #len_vocab = 2 # esto lo cambie para indicar el numero de atributos especiales procesados
         #atributos = ["longitud_oracion","longitud_palabras"]
+        
         atributos = space.kwargs_space["argument_x"].split(",")
+        #print "atributos:",atributos
         #"hola a todos".split()
         
         Util.create_a_dir(space.space_path + "/sparse")
@@ -10709,9 +10711,13 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                 #meter atributos calculados apartir del texto
                 #aqui tengo acceso a los tokens
                 
-                #print tokens
+                #print "tokens ATTRmatixholder:",tokens
+                
                 
                 for atributo in range(len(atributos)):
+                    
+                    #print "atributo",atributo
+                    
                     #matrix_docs_terms_mk[i, atributo] = 0                    
                     if "longitud_texto" in atributos[atributo]:
                         matrix_docs_terms_mk[i, atributo] = tamDoc
@@ -10751,10 +10757,18 @@ class ATTRMatrixHolder(MatrixHolder): #---------------------
                     
                     #caracteristicas florou frecuecia de tiempo y modo en verbos
                     if "Rel_t_P" in atributos[atributo]:
+                        # solicita vector de atributos de frecuencia de verbos inicia Rel_t_P
+                        
                         attr_verbos = verbos_florou(tokens)
+                        #print "attr_verbos:",attr_verbos
+                        #print "len attr_verbos:",len(attr_verbos)
+                        
                         for j in range(len(attr_verbos)):
                             matrix_docs_terms_mk[i, atributo+j] = attr_verbos[j]
-                            #print atributo+j
+                            #nt "atributo+j",atributo+j
+                        
+                        #print matrix_docs_terms_mk[i]
+                        
                         break
 
                     

@@ -333,8 +333,13 @@ def verbos_florou(monograms_solo_tags):
                 total_verbos+=1   # cuenta de verbos
                 
                 combinacion_temp= word[2]+word[3] #la combinacion de modo y tiempo a buscar
-                i=combinaciones_mt.index(combinacion_temp)
-                combinaciones_mt_conteo[i]+=1
+                #indica el indice de una combinacion en cuestion
+                if combinacion_temp in combinaciones_mt:
+                    i=combinaciones_mt.index(combinacion_temp) #busca la combinacion en el problma es si no encuentra la combinacion
+                    combinaciones_mt_conteo[i]+=1
+                else:
+                    print "ALERTA COMBINACION NO ENCONTRADA EN VECTOR:",combinacion_temp
+                
                 
 #                 if verbo_aux_haber == 1:
 #                     verbo_aux_haber=0
